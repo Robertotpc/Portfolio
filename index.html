@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+
+    body { overflow-x: hidden; }
+
+    /* ── HERO SECTION (sfondo blu) ── */
+    .hero {
+      min-height: 100vh;
+      background: #0070C0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 40px 20px;
+    }
+
+    /* Griglia di punti in background */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: gridPulse 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes gridPulse {
+      from { opacity: 0.4; }
+      to   { opacity: 0.8; }
+    }
+
+    /* Cerchio decorativo in basso a destra */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -120px;
+      right: -120px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.12);
+      animation: rotateSlow 20s linear infinite;
+    }
+
+    @keyframes rotateSlow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.2s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(52px, 11vw, 110px);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+
+    .hero-title .line {
+      display: block;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .hero-title .line:nth-child(1) { animation: fadeUp 0.7s ease 0.4s forwards; }
+    .hero-title .line:nth-child(2) { animation: fadeUp 0.7s ease 0.6s forwards; }
+    .hero-title .line:nth-child(3) { animation: fadeUp 0.7s ease 0.8s forwards; }
+
+    .hero-title .line--outline {
+      -webkit-text-stroke: 2px #fff;
+      color: transparent;
+    }
+
+    .hero-sub {
+      margin-top: 32px;
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.04em;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 1s forwards;
+    }
+
+    .hero-cta {
+      margin-top: 44px;
+      display: inline-block;
+      background: #ffffff;
+      color: #0070C0;
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 36px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 1.2s forwards;
+      transition: background 0.2s, color 0.2s;
+    }
+    .hero-cta:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    /* Freccia scroll */
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 1.6s forwards;
+    }
+    .scroll-hint svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: rgba(255,255,255,0.5);
+      stroke-width: 2;
+      animation: bounce 1.6s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(8px); }
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── FADE TRANSITION verso sezione bianca ── */
+    .hero-fade {
+      height: 120px;
+      background: linear-gradient(to bottom, #0070C0 0%, #ffffff 100%);
+    }
+
+    /* ── SEZIONE PRESENTAZIONE (bianca) ── */
+    .intro-section {
+      background: #fff;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .intro-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0070C0;
+      margin-bottom: 10px;
+    }
+
+    .intro-heading {
+      font-family: 'Syne', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    /* ── PROJECTS GRID ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 4px;
+    }
+
+    .proj-card {
+      background: #000;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .proj-card:hover .proj-card-label { letter-spacing: 0.16em; }
+
+    .proj-card-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+      transition: letter-spacing 0.3s;
+    }
+
+    .proj-card--ust      { background: #0070C0; }
+    .proj-card--monta    { background: #000; }
+    .proj-card--nonni    { background: #00AD85; }
+    .proj-card--chi      { background: #1a1a1a; }
+    .proj-card--terza    { background: #333; }
+
+    /* ── RESPONSIVE HOME ── */
+    @media (max-width: 720px) {
+      .intro-grid { grid-template-columns: 1fr; gap: 28px; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo">PORTFOLIO-FLS</a>
+      <nav class="nav-buttons">
+        <a href="chi-sono.html" class="nav-btn">CHI SONO</a>
+        <a href="3-superiore.html" class="nav-btn">3 SUPERIORE</a>
+        <a href="4-superiore.html" class="nav-btn">4 SUPERIORE</a>
+        <a href="5-superiore.html" class="nav-btn">5 SUPERIORE</a>
+      </nav>
+      <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="chi-sono.html">CHI SONO</a>
+      <a href="3-superiore.html">3 SUPERIORE</a>
+      <a href="4-superiore.html">4 SUPERIORE</a>
+      <a href="5-superiore.html">5 SUPERIORE</a>
+    </div>
+  </header>
+
+  <!-- HERO BLU -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Portfolio FLS &nbsp;·&nbsp; A.S. 2025/2026</p>
+      <h1 class="hero-title">
+        <span class="line">BEN</span>
+        <span class="line line--outline">VENU</span>
+        <span class="line">TO</span>
+      </h1>
+      <p class="hero-sub">Roberto Filippo Paternò Castello &nbsp;·&nbsp; 4°M Informatico &nbsp;·&nbsp; Istituto Blaise Pascal</p>
+      <a href="chi-sono.html" class="hero-cta">Scopri il portfolio →</a>
+    </div>
+    <div class="scroll-hint">
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </section>
+
+  <!-- FADE BLU → BIANCO -->
+  <div class="hero-fade"></div>
+
+  <!-- SEZIONE INTRO BIANCA -->
+  <section class="intro-section">
+    <div class="strip-inner">
+      <div class="intro-grid">
+        <div>
+          <p class="intro-name">Roberto Paternò Castello</p>
+          <h2 class="intro-heading">NEL MIO<br>PORTFOLIO</h2>
+          <p>Studente di informatica al Blaise Pascal di Reggio Emilia. Qui trovi i miei progetti FLS, le attività svolte e le competenze acquisite nel triennio.</p>
+        </div>
+        <div>
+          <div class="projects-grid">
+            <a href="ust.html" class="proj-card proj-card--ust">
+              <span class="proj-card-label">UST</span>
+            </a>
+            <a href="monta-smonta.html" class="proj-card proj-card--monta">
+              <span class="proj-card-label">Monta &amp; Smonta</span>
+            </a>
+            <a href="nonni-smart.html" class="proj-card proj-card--nonni">
+              <span class="proj-card-label">Nonni Smart</span>
+            </a>
+            <a href="chi-sono.html" class="proj-card proj-card--chi">
+              <span class="proj-card-label">Chi sono</span>
+            </a>
+            <a href="3-superiore.html" class="proj-card proj-card--terza">
+              <span class="proj-card-label">3ª Superiore</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>Roberto Filippo Paternò Castello &nbsp;·&nbsp; 4°M Informatico &nbsp;·&nbsp; Istituto Blaise Pascal &nbsp;·&nbsp; Portfolio-FLS &nbsp;·&nbsp; A.S 2025/2026</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
