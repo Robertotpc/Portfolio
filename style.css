@@ -1,227 +1,184 @@
-/* =============================================
-   Portfolio PCTO – Roberto Paternò Castello
-   Font: Syne (come originale Wix)
-   ============================================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── VARIABILI ── */
+:root {
+  --bg:       #0a0f1a;        /* blu notte — stesso tono della hero */
+  --surface:  #111827;        /* card / pannelli */
+  --surface2: #1a2335;        /* hover, bordi interni */
+  --blue:     #0070C0;
+  --blue-dim: rgba(0,112,192,0.18);
+  --white:    #ffffff;
+  --muted:    rgba(255,255,255,0.45);
+  --border:   rgba(255,255,255,0.08);
+  --max:      960px;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
 body {
-  background: #ffffff;
-  color: #000000;
+  background: var(--bg);
+  color: var(--white);
   font-family: 'Syne', Arial, sans-serif;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.75;
   font-weight: 400;
 }
 
 /* ── HEADER ── */
 .site-header {
-  background: #ffffff;
-  border-bottom: 1px solid #e2e2e2;
-  position: sticky;
-  top: 0;
-  z-index: 200;
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(10,15,26,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
 }
-
 .header-inner {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 0 20px;
-  height: 72px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  max-width: var(--max); margin: 0 auto;
+  padding: 0 32px; height: 64px;
+  display: flex; align-items: center; gap: 32px;
 }
-
 .site-logo {
   font-family: 'Syne', sans-serif;
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #000;
-  text-decoration: none;
-  flex-shrink: 0;
+  font-size: 13px; font-weight: 800;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--white); text-decoration: none; flex-shrink: 0;
 }
-
-.nav-buttons {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-left: auto;
-}
-
+.nav-buttons { display: flex; gap: 2px; margin-left: auto; }
 .nav-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #000000;
-  color: #ffffff;
   font-family: 'Syne', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 10px 20px;
-  transition: background 0.2s;
-  white-space: nowrap;
-  border: none;
-  cursor: pointer;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none; color: var(--muted);
+  padding: 7px 14px; border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+  border: none; background: none; cursor: pointer; white-space: nowrap;
 }
-
-.nav-btn:hover { background: #222; }
-.nav-btn.active { background: #00AD85; }
+.nav-btn:hover  { color: var(--white); background: var(--surface2); }
+.nav-btn.active { color: var(--blue); }
 
 .hamburger {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-  margin-left: auto;
+  display: none; background: none; border: none;
+  font-size: 20px; cursor: pointer; margin-left: auto; color: var(--white);
 }
-
 .mobile-menu {
   display: none;
-  background: #fff;
-  border-top: 1px solid #e2e2e2;
-  padding: 10px 20px 14px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 12px 32px 16px;
 }
-.mobile-menu.open { display: block;}
+.mobile-menu.open { display: block; }
 .mobile-menu a {
-  display: block;
-  padding: 9px 0;
-  font-family: 'Syne', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #000;
-  border-bottom: 1px solid #f0f0f0;
+  display: block; padding: 10px 0;
+  font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none; color: var(--muted);
+  border-bottom: 1px solid var(--border);
 }
+.mobile-menu a:hover { color: var(--white); }
 
-/* ── STRIPS / SECTIONS ── */
+/* ── STRIP / SEZIONI ── */
 .strip { width: 100%; }
-.strip--white { background: #ffffff; }
-.strip--light { background: #f5f5f5; }
-.strip--black { background: #000000; color: #ffffff; }
+.strip--white { background: var(--bg); }
+.strip--light { background: var(--surface); }
+.strip--black { background: #000; }
 
 .strip-inner {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 64px 20px;
+  max-width: var(--max); margin: 0 auto;
+  padding: 72px 32px;
 }
 
-/* ── TYPOGRAPHY ── */
+/* ── TIPOGRAFIA ── */
 .section-title {
   font-family: 'Syne', sans-serif;
-  font-size: 38px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  line-height: 1.1;
-  margin-bottom: 28px;
+  font-size: clamp(26px, 4vw, 40px); font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.02em;
+  line-height: 1.1; margin-bottom: 32px;
+  color: var(--white);
 }
-
 .project-title {
   font-family: 'Syne', sans-serif;
-  font-size: 32px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  line-height: 1.1;
-  margin-bottom: 20px;
+  font-size: clamp(22px, 3vw, 32px); font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.02em;
+  line-height: 1.1; margin-bottom: 20px;
+  color: var(--white);
 }
-
 .label {
   font-family: 'Syne', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #8F8F8F;
-  margin-bottom: 6px;
-  display: block;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 8px; display: block;
 }
 
-p { line-height: 1.75; }
-p + p { margin-top: 12px; }
+p { line-height: 1.78; color: rgba(255,255,255,0.8); }
+p + p { margin-top: 14px; }
+strong { color: var(--white); font-weight: 600; }
 
 /* ── LAYOUT ── */
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: start;
+  gap: 56px; align-items: start;
 }
+.img-cover { display: block; width: 100%; object-fit: cover; }
 
-.img-cover {
-  display: block;
-  width: 100%;
-  object-fit: cover;
-}
-
-/* ── DIVIDER ── */
-.divider {
-  border: none;
-  border-top: 2px solid #000;
-  margin: 0;
+/* ── DIVIDER INLINE (nelle pagine progetto) ── */
+hr[style*="border-top"] {
+  border-color: var(--border) !important;
 }
 
 /* ── BACK BUTTON ── */
 .back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #000;
-  color: #fff;
+  display: inline-flex; align-items: center; gap: 8px;
   font-family: 'Syne', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
   text-decoration: none;
-  padding: 10px 20px;
-  margin-bottom: 36px;
-  transition: 0.5s;
+  color: var(--muted);
+  margin-bottom: 48px;
+  transition: color 0.15s;
+  background: none; border: none; padding: 0; cursor: pointer;
 }
-.back-btn:hover { background:#00AD85 }
+.back-btn:hover { color: var(--blue); }
 
-/* ── TODO PLACEHOLDER ── */
-.todo {
-  background: #fff8dc;
-  border-left: 3px solid #f0c040;
-  padding: 12px 16px;
-  font-style: italic;
-  color: #7a6a30;
-  font-size: 13px;
-  margin-top: 10px;
+/* ── "LEGGI DI PIÙ" button (nelle pagine elenco) ── */
+a.back-btn[href$=".html"][style*="margin-top"] {
+  color: var(--blue);
+  border: 1px solid var(--blue-dim);
+  padding: 8px 18px;
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
+}
+a.back-btn[href$=".html"][style*="margin-top"]:hover {
+  background: var(--blue-dim);
+  color: var(--white);
+}
+
+/* ── TITOLO RIFLESSIONE PERSONALE (h3 inline) ── */
+h3[style*="font-family"] {
+  color: var(--blue) !important;
 }
 
 /* ── FOOTER ── */
 .site-footer {
-  border-top: 1px solid #e2e2e2;
-  padding: 28px 20px;
-  text-align: center;
+  border-top: 1px solid var(--border);
+  padding: 28px 32px; text-align: center;
+  background: var(--bg);
 }
 .site-footer p {
   font-family: 'Syne', sans-serif;
-  font-size: 11px;
-  color: #555;
-  letter-spacing: 0.04em;
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted);
 }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 720px) {
   .nav-buttons { display: none; }
-  .hamburger { display: block; }
-  .two-col { grid-template-columns: 1fr; gap: 24px; }
-  .strip-inner { padding: 40px 16px; }
-  .section-title { font-size: 26px; }
-  .project-title { font-size: 24px; }
+  .hamburger   { display: block; }
+  .header-inner, .strip-inner, .site-footer { padding-left: 20px; padding-right: 20px; }
+  .strip-inner  { padding-top: 48px; padding-bottom: 48px; }
+  .two-col      { grid-template-columns: 1fr; gap: 28px; }
+  .section-title { font-size: 24px; }
+  .project-title { font-size: 20px; }
 }
